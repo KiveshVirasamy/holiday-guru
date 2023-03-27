@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "holiday-guru"
+  },
+  "targets": {
+    "holiday-guru": {
+      "hosting": {
+        "holiday-guru": [
+          "holiday-guru"
+        ]
+      }
+    }
+  }
+}
