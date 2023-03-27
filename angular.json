@@ -97,8 +97,21 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "holiday-guru:build:production",
+            "firebaseProject": "holiday-guru",
+            "firebaseHostingSite": "holiday-guru"
+          }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "f7bc870e-2cc1-4bb8-812f-c6fa88a917c4"
   }
 }
