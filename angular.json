@@ -114,11 +114,23 @@
             "firebaseProject": "holiday-guru",
             "firebaseHostingSite": "holiday-guru"
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
   "cli": {
-    "analytics": "f7bc870e-2cc1-4bb8-812f-c6fa88a917c4"
+    "analytics": "f7bc870e-2cc1-4bb8-812f-c6fa88a917c4",
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }
