@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { registerLocaleData } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import en from '@angular/common/locales/en';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
@@ -14,8 +14,16 @@ import { en_US, NZ_I18N } from 'ng-zorro-antd/i18n';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
-import { SignupComponent } from './components/signup/signup.component';
+
+import { SignUpComponent } from './components/sign-up/signup.component';
+
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
+import { LandingPageComponent } from './landing-page/landing-page.component';
+import { LoginComponent } from './login/login.component';
 
 
 registerLocaleData(en);
@@ -26,7 +34,10 @@ registerLocaleData(en);
   declarations: [
     AppComponent,
     LoginComponent,
-    SignupComponent
+    SignUpComponent,
+    LandingPageComponent,
+
+
 
   ],
   imports: [
@@ -39,11 +50,18 @@ registerLocaleData(en);
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    CommonModule,
+    NzTypographyModule,
+    NzFormModule,
+    NzInputModule,
+    NzButtonModule,
+    NzGridModule
 
 
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },
+
 
   ],
   bootstrap: [AppComponent]

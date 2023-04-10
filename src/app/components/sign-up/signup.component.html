@@ -1,0 +1,36 @@
+<nz-row class="displayTable">
+    <nz-col class="displayTableCell" nzSpan="8" nzOffset="8">
+        <div class="authBlock">
+            <h3 nz-typography>Sign Up</h3>
+            <form nz-form>
+                <nz-form-item>
+                    <nz-form-control>
+                        <input nz-input type="email" placeholder="Email Address" #userEmail required />
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-control>
+                        <input nz-input type="password" placeholder="Password" #userPwd required />
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <button nz-button nzType="primary">Sign Up</button>
+                </nz-form-item>
+                <nz-form-item>
+                    <span class="or"><span class="orInner">Or</span></span>
+                </nz-form-item>
+                <nz-form-item>
+                    <button nz-button nzType="primary" class="googleBtn">
+                        <i class="fab fa-google-plus-g"></i>
+                        Continue with Google
+                    </button>
+                </nz-form-item>
+            </form>
+            <div class="redirectToLogin">
+                <span>Already have an account?
+                    <button nz-button nzType="default" routerLink="/login">Log In</button>
+                </span>
+            </div>
+        </div>
+    </nz-col>
+</nz-row>
