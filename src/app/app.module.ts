@@ -17,13 +17,16 @@ import { AppComponent } from './app.component';
 
 import { SignUpComponent } from './components/sign-up/signup.component';
 
+import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
-import { LandingPageComponent } from './landing-page/landing-page.component';
-import { LoginComponent } from './login/login.component';
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import { LoginComponent } from './components/login/login.component';
+import { AuthService } from './shared/services/auth.service';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 
 registerLocaleData(en);
@@ -36,6 +39,7 @@ registerLocaleData(en);
     LoginComponent,
     SignUpComponent,
     LandingPageComponent,
+    DashboardComponent,
 
 
 
@@ -61,6 +65,9 @@ registerLocaleData(en);
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },
+    { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
+    AuthService
+    // FirestoreService
 
 
   ],

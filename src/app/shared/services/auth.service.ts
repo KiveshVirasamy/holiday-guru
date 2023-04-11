@@ -1,36 +1,57 @@
 import { Injectable } from '@angular/core';
+
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  isloggedIn: boolean;
+  router: Router
+  constructor(public auth: AngularFireAuth) {
+    this.isloggedIn = false;
+  }
 
-  constructor(private auth: AngularFireAuth) { }
+
 
   async login(email: string, password: string): Promise<void> {
+
     try {
-      await this.auth.signInWithEmailAndPassword(email, password);
+      await this.auth.signInWithEmailAndPassword(email, password)
+        .then(res => {
+          this.isloggedIn = true;
+          localStorage.setItem('user', JSON.stringify(res.user))
+        })
     } catch (error) {
       console.log('Error logging in:', error);
+      this.isloggedIn = true;
+    }
+  }
+
+  async signup(email: string, password: string): Promise<void> {
+    try {
+      await this.auth.createUserWithEmailAndPassword(email, password)
+        .then(res => {
+          this.isloggedIn = true;
+          localStorage.setItem('user', JSON.stringify(res.user))
+        })
+    } catch (error) {
+      console.log('Error logging in:', error);
+      this.isloggedIn = false;
     }
   }
 
   async logout(): Promise<void> {
     try {
       await this.auth.signOut();
+      localStorage.removeItem('user');
     } catch (error) {
       console.log('Error logging out:', error);
     }
   }
 
-  async signup(email: string, password: string): Promise<void> {
-    try {
-      await this.auth.createUserWithEmailAndPassword(email, password);
-    } catch (error) {
-      console.log('Error signing up:', error);
-    }
-  }
+
 
 
 }

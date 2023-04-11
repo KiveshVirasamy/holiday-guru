@@ -1,13 +1,13 @@
+
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
-
 @Component({
-  selector: 'app-signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
-export class SignUpComponent implements OnInit {
+export class LoginComponent implements OnInit {
   isSignedIn = false;
 
   constructor(public auth: AuthService) { }
@@ -19,10 +19,9 @@ export class SignUpComponent implements OnInit {
       this.isSignedIn = false;
   }
 
-  async onSignup(email: string, password: string) {
-    await this.auth.signup(email, password)
+  async onLogin(email: string, password: string) {
+    await this.auth.login(email, password)
     if (this.auth.isloggedIn)
       this.isSignedIn = true;
   }
-
 }
