@@ -23,12 +23,15 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzListModule } from 'ng-zorro-antd/list';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
+import { ActivityComponent } from './components/activity/activity.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { LoginComponent } from './components/login/login.component';
+import { TripComponent } from './components/trip/trip.component';
 import { AuthService } from './shared/services/auth.service';
 
 
@@ -43,6 +46,8 @@ registerLocaleData(en);
     SignUpComponent,
     LandingPageComponent,
     DashboardComponent,
+    TripComponent,
+    ActivityComponent,
 
 
 
@@ -65,7 +70,8 @@ registerLocaleData(en);
     NzGridModule,
     NzLayoutModule,
     NzMenuModule,
-    NzSpinModule
+    NzSpinModule,
+    NzListModule
 
 
   ],
@@ -73,7 +79,7 @@ registerLocaleData(en);
     { provide: NZ_I18N, useValue: en_US },
     { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
     AuthService
-    // FirestoreService
+    //FirestoreService
 
 
   ],

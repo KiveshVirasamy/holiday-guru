@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
-import { User } from 'src/app/models/user';
+import { IUserData } from 'src/app/models/user';
+
 
 
 
@@ -10,46 +11,46 @@ import { User } from 'src/app/models/user';
   providedIn: 'root'
 })
 export class FirestoreService {
-  private usersCollection: AngularFirestoreCollection<User>;
-  private users: Observable<User[]>;
+  private IUserDatasCollection: AngularFirestoreCollection<IUserData>;
+  private IUserDatas: Observable<IUserData[]>;
 
   constructor(private firestore: AngularFirestore) {
-    this.usersCollection = this.firestore.collection<User>('users');
-    this.users = this.usersCollection.snapshotChanges().pipe(
+    this.IUserDatasCollection = this.firestore.collection<IUserData>('IUserDatas');
+    this.IUserDatas = this.IUserDatasCollection.snapshotChanges().pipe(
       map(actions => actions.map(a => {
-        const data = a.payload.doc.data() as User;
+        const data = a.payload.doc.data() as IUserData;
         const id = a.payload.doc.id;
         return { id, ...data };
       }))
     );
   }
 
-  getUsers(): Observable<User[]> {
-    return this.users;
+  getIUserDatas(): Observable<IUserData[]> {
+    return this.IUserDatas;
   }
 
-  getUser(id: string): Observable<User | undefined> {
-    return this.usersCollection.doc<User>(id).valueChanges().pipe(
+  getIUserData(id: string): Observable<IUserData | undefined> {
+    return this.IUserDatasCollection.doc<IUserData>(id).valueChanges().pipe(
       take(1),
-      map(user => {
-        if (user) {
-          user.id = id;
+      map(IUserData => {
+        if (IUserData) {
+          IUserData.userId = id;
         }
-        return user;
+        return IUserData;
       })
     );
   }
 
 
-  addUser(user: User): Promise<DocumentReference> {
-    return this.usersCollection.add(user);
+  addIUserData(IUserData: IUserData): Promise<DocumentReference> {
+    return this.IUserDatasCollection.add(IUserData);
   }
 
-  updateUser(user: User): Promise<void> {
-    return this.usersCollection.doc(user.id).update({ email: user.email, password: user.password });
+  updateIUserData(IUserData: IUserData): Promise<void> {
+    return this.IUserDatasCollection.doc(IUserData.userId).update({ email: IUserData.email });
   }
 
-  deleteUser(id: string): Promise<void> {
-    return this.usersCollection.doc(id).delete();
+  deleteIUserData(id: string): Promise<void> {
+    return this.IUserDatasCollection.doc(id).delete();
   }
 }
