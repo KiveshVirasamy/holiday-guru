@@ -22,11 +22,14 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthService } from './shared/services/auth.service';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 
 registerLocaleData(en);
@@ -59,7 +62,10 @@ registerLocaleData(en);
     NzFormModule,
     NzInputModule,
     NzButtonModule,
-    NzGridModule
+    NzGridModule,
+    NzLayoutModule,
+    NzMenuModule,
+    NzSpinModule
 
 
   ],
