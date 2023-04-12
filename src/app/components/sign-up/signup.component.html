@@ -1,0 +1,32 @@
+<nz-layout class="bg-[url('src/assets/background.jpg')]">
+    <nz-header>
+        <nav class="flex justify-between items-center h-full">
+            <a routerLink="/" nz-typography class="text-4xl font-bold">Holiday Guru</a>
+            <div>
+                <button nz-button nzType="primary" nzShape="round" routerLink="/login" class="mr-4">Login</button>
+                <button nz-button nzType="default" nzShape="round" routerLink="/signup">Sign Up</button>
+            </div>
+        </nav>
+    </nz-header>
+    <nz-content>
+        <div class="flex flex-col justify-center items-center h-screen">
+            <div class="bg-white rounded-lg p-6 shadow-lg">
+                <h2 class="text-2xl font-bold mb-4">Sign Up</h2>
+                <form nz-form>
+                    <nz-form-item>
+                        <nz-form-label>Email</nz-form-label>
+                        <input nz-input type="text" #emailSignUp class="w-full" />
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-label>Password</nz-form-label>
+                        <input nz-input type="password" #passwordSignUp class="w-full" />
+                    </nz-form-item>
+                    <button nz-button nzType="primary" class="w-full"
+                        (click)="onSignup(emailSignUp.value, passwordSignUp.value)">Sign Up</button>
+                </form>
+                <div></div>
+            </div>
+        </div>
+    </nz-content>
+
+</nz-layout>
