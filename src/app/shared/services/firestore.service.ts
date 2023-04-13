@@ -1,8 +1,13 @@
-import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from '@angular/fire/compat/firestore';
+import { inject, Injectable } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import {
+  AngularFireDatabase, AngularFireList, AngularFireObject
+} from '@angular/fire/compat/database';
+import {
+  CollectionReference, Firestore
+} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { map, take } from 'rxjs/operators';
-import { IUserData } from 'src/app/models/user';
+import { ITrips } from 'src/app/models/user';
 
 
 
@@ -11,46 +16,37 @@ import { IUserData } from 'src/app/models/user';
   providedIn: 'root'
 })
 export class FirestoreService {
-  private IUserDatasCollection: AngularFirestoreCollection<IUserData>;
-  private IUserDatas: Observable<IUserData[]>;
+  tripsCollection: CollectionReference;
+  trips$: Observable<ITrips[]>;
+  trips: AngularFireList<ITrips>;
+  tripRef: AngularFireObject<ITrips>;
 
-  constructor(private firestore: AngularFirestore) {
-    this.IUserDatasCollection = this.firestore.collection<IUserData>('IUserDatas');
-    this.IUserDatas = this.IUserDatasCollection.snapshotChanges().pipe(
-      map(actions => actions.map(a => {
-        const data = a.payload.doc.data() as IUserData;
-        const id = a.payload.doc.id;
-        return { id, ...data };
-      }))
-    );
+  private firestore = inject(Firestore);
+
+  constructor(public auth: AngularFireAuth, private db: AngularFireDatabase) {
+
+  }
+  addTrip(trip: ITrips) {
+    this.trips.push({
+      userID: trip.userID,
+      name: trip.name,
+      description: trip.description,
+      startDate: trip.startDate,
+      endDate: trip.endDate,
+      activities: trip.activities,
+    });
   }
 
-  getIUserDatas(): Observable<IUserData[]> {
-    return this.IUserDatas;
-  }
+  // getAllTrips() {
+  //   this.tripRef = this.db.list('trips');
+  //   return this.tripRef;
 
-  getIUserData(id: string): Observable<IUserData | undefined> {
-    return this.IUserDatasCollection.doc<IUserData>(id).valueChanges().pipe(
-      take(1),
-      map(IUserData => {
-        if (IUserData) {
-          IUserData.userId = id;
-        }
-        return IUserData;
-      })
-    );
+  // }
+
+  getTrips(userID: string) {
+    this.tripRef = this.db.object(`trips/${userID}`);
+    return this.tripRef;
   }
 
 
-  addIUserData(IUserData: IUserData): Promise<DocumentReference> {
-    return this.IUserDatasCollection.add(IUserData);
-  }
-
-  updateIUserData(IUserData: IUserData): Promise<void> {
-    return this.IUserDatasCollection.doc(IUserData.userId).update({ email: IUserData.email });
-  }
-
-  deleteIUserData(id: string): Promise<void> {
-    return this.IUserDatasCollection.doc(id).delete();
-  }
 }

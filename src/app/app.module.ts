@@ -33,6 +33,7 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
 import { LoginComponent } from './components/login/login.component';
 import { TripComponent } from './components/trip/trip.component';
 import { AuthService } from './shared/services/auth.service';
+import { FirestoreService } from './shared/services/firestore.service';
 
 
 registerLocaleData(en);
@@ -78,8 +79,8 @@ registerLocaleData(en);
   providers: [
     { provide: NZ_I18N, useValue: en_US },
     { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
-    AuthService
-    //FirestoreService
+    AuthService,
+    FirestoreService
 
 
   ],

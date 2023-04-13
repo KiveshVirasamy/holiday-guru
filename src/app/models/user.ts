@@ -1,25 +1,26 @@
+
 export interface IUserData {
-    idToken: string;
     email: string | null;
     userId: string;
     trips: ITrips[];
 }
 
 export interface ITrips {
-    name: string;
+    userID: string | unknown;
+    name: string | unknown;
     description?: string;
-    startDate: string;
-    endDate: string;
+    startDate: string | unknown;
+    endDate: string | unknown;
     activities: IActivities[];
 }
 
 export interface IActivities {
-    name: string;
+    userID: string | null;
+    name: string | null;
     description?: string;
-    tag: string;
-    cost_estimate: string;
-    startDate: string;
-    endDate: string;
+    cost_estimate: string | null;
+    startTime: string | null;
+    endTime: string | null;
     startLocation?: string;
     endLocation?: string;
 }
