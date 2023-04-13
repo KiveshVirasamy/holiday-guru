@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   isloggedIn: boolean;
-  router: Router
+  router: Router;
   constructor(public auth: AngularFireAuth) {
     this.isloggedIn = false;
   }
@@ -22,6 +22,7 @@ export class AuthService {
         .then(res => {
           this.isloggedIn = true;
           localStorage.setItem('user', JSON.stringify(res.user))
+          this.router.navigate(['dashboard']);
         })
     } catch (error) {
       console.log('Error logging in:', error);
@@ -43,12 +44,9 @@ export class AuthService {
   }
 
   async logout(): Promise<void> {
-    try {
-      await this.auth.signOut();
-      localStorage.removeItem('user');
-    } catch (error) {
-      console.log('Error logging out:', error);
-    }
+    this.auth.signOut;
+    this.isloggedIn = false;
+    this.router.navigate(['/']);
   }
 
 

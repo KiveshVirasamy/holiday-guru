@@ -34,6 +34,7 @@ import { LoginComponent } from './components/login/login.component';
 import { TripComponent } from './components/trip/trip.component';
 import { AuthService } from './shared/services/auth.service';
 import { FirestoreService } from './shared/services/firestore.service';
+import { LogoutComponent } from './components/logout/logout.component';
 
 
 registerLocaleData(en);
@@ -49,6 +50,7 @@ registerLocaleData(en);
     DashboardComponent,
     TripComponent,
     ActivityComponent,
+    LogoutComponent,
 
 
 
