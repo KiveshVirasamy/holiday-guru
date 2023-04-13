@@ -1,13 +1,9 @@
 import { inject, Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import {
-  AngularFireDatabase, AngularFireList, AngularFireObject
-} from '@angular/fire/compat/database';
-import {
-  CollectionReference, Firestore
-} from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { collectionData, Firestore } from '@angular/fire/firestore';
+import { addDoc, collection, deleteDoc, doc, updateDoc } from 'firebase/firestore';
+import { Observable, switchMap } from 'rxjs';
 import { ITrips } from 'src/app/models/user';
+import { AuthService } from './auth.service';
 
 
 
@@ -16,37 +12,79 @@ import { ITrips } from 'src/app/models/user';
   providedIn: 'root'
 })
 export class FirestoreService {
-  tripsCollection: CollectionReference;
-  trips$: Observable<ITrips[]>;
-  trips: AngularFireList<ITrips>;
-  tripRef: AngularFireObject<ITrips>;
-
   private firestore = inject(Firestore);
 
-  constructor(public auth: AngularFireAuth, private db: AngularFireDatabase) {
+  constructor(private auth: AuthService) {
 
   }
-  addTrip(trip: ITrips) {
-    this.trips.push({
-      userID: trip.userID,
-      name: trip.name,
-      description: trip.description,
-      startDate: trip.startDate,
-      endDate: trip.endDate,
-      activities: trip.activities,
-    });
+  //Read
+  getTrips() {
+    // const userId = this.auth.getUserId;
+    const userId = 'R8McYo1CASSrzqVArC5fwQkSydp2';
+
+    const tripRef = collection(this.firestore, `users/${userId}/trips`);
+
+    return collectionData(tripRef).pipe(switchMap(data => { console.log(data); return data })) as Observable<ITrips[]>
+
+  }
+  //Create
+  addTrips(trip: ITrips) {
+    const userId = this.auth.getUserId;
+    // const userId = 'R8McYo1CASSrzqVArC5fwQkSydp2';
+    const tripRef = collection(this.firestore, `users/${userId}/trips`);
+    return addDoc(tripRef, trip);
+  }
+  //Update
+  upDateTrip(trip) {
+    const userId = this.auth.getUserId;
+    const tripId = 'j8DdhI7slMw1ohXctyTF';
+    // const userId = 'R8McYo1CASSrzqVArC5fwQkSydp2';
+    const tripRef = doc(this.firestore, `users/${userId}/trips/${tripId}`);
+    return updateDoc(tripRef, trip);
   }
 
-  // getAllTrips() {
-  //   this.tripRef = this.db.list('trips');
-  //   return this.tripRef;
-
-  // }
-
-  getTrips(userID: string) {
-    this.tripRef = this.db.object(`trips/${userID}`);
-    return this.tripRef;
+  //Delete
+  deleteTrip(tripId: string) {
+    const userId = this.auth.getUserId;
+    // const userId = 'R8McYo1CASSrzqVArC5fwQkSydp2';
+    const tripRef = doc(this.firestore, `users/${userId}/trips/${tripId}`);
+    return deleteDoc(tripRef);
   }
 
+  getActivities() {
+    // const userId = this.auth.getUserId;
+    const userId = 'R8McYo1CASSrzqVArC5fwQkSydp2';
+
+    const tripRef = collection(this.firestore, `users/${userId}/trips/activities`);
+
+    return collectionData(tripRef).pipe(switchMap(data => { console.log(data); return data })) as Observable<ITrips[]>
+
+  }
+  //Create
+  addActivities(trip: ITrips) {
+    const userId = this.auth.getUserId;
+    // const userId = 'R8McYo1CASSrzqVArC5fwQkSydp2';
+    const tripRef = collection(this.firestore, `users/${userId}/trips/activities`);
+    return addDoc(tripRef, trip);
+  }
+  //Update
+  updateActivities(activity) {
+    const userId = this.auth.getUserId;
+    const tripId = 'j8DdhI7slMw1ohXctyTF';
+    const activityId = 'j8DdhI7slMw1ohXctyTF';
+    // const userId = 'R8McYo1CASSrzqVArC5fwQkSydp2';
+    const tripRef = doc(this.firestore, `users/${userId}/trips/${tripId}/activities/${activityId}`);
+    return updateDoc(tripRef, activity);
+  }
+
+  //Delete
+  deleteActivities() {
+    const userId = this.auth.getUserId;
+    // const userId = 'R8McYo1CASSrzqVArC5fwQkSydp2';
+    const tripId = 'j8DdhI7slMw1ohXctyTF';
+    const activityId = 'j8DdhI7slMw1ohXctyTF';
+    const tripRef = doc(this.firestore, `users/${userId}/trips/${tripId}/activities/${activityId}`);
+    return deleteDoc(tripRef);
+  }
 
 }

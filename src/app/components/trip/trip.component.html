@@ -1,18 +1,34 @@
-<nz-layout>
-    <nz-content>
-        <ul class="list-disc list-inside">
-            <li class="mb-4">
-                <h2 class="text-2xl font-bold">Trip 1</h2>
-                <p class="text-lg">Description of trip 1</p>
-            </li>
-            <li class="mb-4">
-                <h2 class="text-2xl font-bold">Trip 2</h2>
-                <p class="text-lg">Description of trip 2</p>
-            </li>
-            <li class="mb-4">
-                <h2 class="text-2xl font-bold">Trip 3</h2>
-                <p class="text-lg">Description of trip 3</p>
-            </li>
-        </ul>
-    </nz-content>
-</nz-layout>
+<ng-container *ngIf="(tripData$ | async); else trips">
+
+    <ul *ngFor="let item of (tripData$ | async) | keyvalue">
+        <li class="mb-4">{{item.key}} : {{item.value}} </li>
+    </ul>
+</ng-container>
+<ng-template #trips>
+    loading...
+</ng-template>
+
+<button (click)="addUserTrip()">Add trip</button>
+
+<button (click)="updateUserTrip()">updateTrip</button>
+
+
+<!-- 
+    <nz-layout>
+        <nz-content>
+            <ul class="list-disc list-inside">
+                <li class="mb-4">
+                    <h2 class="text-2xl font-bold">Trip 1</h2>
+                    <p class="text-lg">Description of trip 1</p>
+                </li>
+                <li class="mb-4">
+                    <h2 class="text-2xl font-bold">Trip 2</h2>
+                    <p class="text-lg">Description of trip 2</p>
+                </li>
+                <li class="mb-4">
+                    <h2 class="text-2xl font-bold">Trip 3</h2>
+                    <p class="text-lg">Description of trip 3</p>
+                </li>
+            </ul>
+        </nz-content>
+    </nz-layout> -->

@@ -14,15 +14,20 @@ export class AuthService {
   }
 
 
-
   async login(email: string, password: string): Promise<void> {
 
     try {
+
       await this.auth.signInWithEmailAndPassword(email, password)
         .then(res => {
           this.isloggedIn = true;
-          localStorage.setItem('user', JSON.stringify(res.user))
-          this.router.navigate(['dashboard']);
+          if (res.user) {
+            localStorage.setItem('user', JSON.stringify(res.user));
+            localStorage.setItem('userId', res.user.uid);
+            console.log(localStorage.getItem('userId'));
+
+
+          }
         })
     } catch (error) {
       console.log('Error logging in:', error);
@@ -35,7 +40,12 @@ export class AuthService {
       await this.auth.createUserWithEmailAndPassword(email, password)
         .then(res => {
           this.isloggedIn = true;
-          localStorage.setItem('user', JSON.stringify(res.user))
+          if (res.user) {
+            localStorage.setItem('user', JSON.stringify(res.user));
+            localStorage.setItem('userId', res.user.uid);
+            console.log(localStorage.getItem('userId'));
+
+          }
         })
     } catch (error) {
       console.log('Error logging in:', error);
@@ -46,8 +56,18 @@ export class AuthService {
   async logout(): Promise<void> {
     this.auth.signOut;
     this.isloggedIn = false;
-    this.router.navigate(['/']);
+
   }
+
+  getUserId(): string {
+
+    return localStorage.getItem('userId') ?? '';
+  }
+
+
+
+
+
 
 
 
