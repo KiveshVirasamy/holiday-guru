@@ -23,6 +23,8 @@ export class SignUpComponent implements OnInit {
     await this.auth.signup(email, password)
     if (this.auth.isloggedIn)
       this.isSignedIn = true;
+    else
+      this.isSignedIn = false;
   }
 
 }
