@@ -1,9 +1,10 @@
 import { inject, Injectable } from '@angular/core';
 import { collectionData, Firestore } from '@angular/fire/firestore';
-import { addDoc, collection, deleteDoc, doc, updateDoc } from 'firebase/firestore';
-import { Observable, switchMap } from 'rxjs';
-import { ITrips } from 'src/app/models/user';
-import { AuthService } from './auth.service';
+import { ActivatedRoute } from '@angular/router';
+import { addDoc, collection, deleteDoc, doc, documentId, updateDoc } from 'firebase/firestore';
+import { Observable } from 'rxjs';
+import { IActivities } from 'src/app/models/types/interfaces/activities';
+import { ITrips } from 'src/app/models/types/interfaces/trips';
 
 
 
@@ -11,80 +12,74 @@ import { AuthService } from './auth.service';
 @Injectable({
   providedIn: 'root'
 })
+
 export class FirestoreService {
   private firestore = inject(Firestore);
 
-  constructor(private auth: AuthService) {
+  constructor(private route: ActivatedRoute) { }
 
-  }
-  //Read
-  getTrips() {
-    // const userId = this.auth.getUserId;
-    const userId = 'R8McYo1CASSrzqVArC5fwQkSydp2';
 
-    const tripRef = collection(this.firestore, `users/${userId}/trips`);
-
-    return collectionData(tripRef).pipe(switchMap(data => { console.log(data); return data })) as Observable<ITrips[]>
-
-  }
   //Create
   addTrips(trip: ITrips) {
-    const userId = this.auth.getUserId;
-    // const userId = 'R8McYo1CASSrzqVArC5fwQkSydp2';
+    const userId = localStorage.getItem('userId' ?? '');
     const tripRef = collection(this.firestore, `users/${userId}/trips`);
     return addDoc(tripRef, trip);
+
   }
+
+  //Read
+  getTrips() {
+    const userId = localStorage.getItem('userId' ?? '');
+    const tripRef = collection(this.firestore, `users/${userId}/trips`);
+    return collectionData(tripRef) as Observable<ITrips[]>
+
+  }
+
+
   //Update
-  upDateTrip(trip) {
-    const userId = this.auth.getUserId;
-    const tripId = 'j8DdhI7slMw1ohXctyTF';
-    // const userId = 'R8McYo1CASSrzqVArC5fwQkSydp2';
+  upDateTrip(trip, tripId: string) {
+    const userId = localStorage.getItem('userId' ?? '');
     const tripRef = doc(this.firestore, `users/${userId}/trips/${tripId}`);
     return updateDoc(tripRef, trip);
   }
 
   //Delete
-  deleteTrip(tripId: string) {
-    const userId = this.auth.getUserId;
-    // const userId = 'R8McYo1CASSrzqVArC5fwQkSydp2';
-    const tripRef = doc(this.firestore, `users/${userId}/trips/${tripId}`);
-    return deleteDoc(tripRef);
+  deleteTrip() {
+    const userId = localStorage.getItem('userId' ?? '');
+    const tripId = '';// To remove later
+    const activityRef = doc(this.firestore, `users/${userId}/trips/${tripId}`);
+    return deleteDoc(activityRef);
   }
 
   getActivities() {
-    // const userId = this.auth.getUserId;
-    const userId = 'R8McYo1CASSrzqVArC5fwQkSydp2';
-
-    const tripRef = collection(this.firestore, `users/${userId}/trips/activities`);
-
-    return collectionData(tripRef).pipe(switchMap(data => { console.log(data); return data })) as Observable<ITrips[]>
-
+    const userId = localStorage.getItem('userId' ?? '');
+    const tripId = documentId();
+    const activityRef = collection(this.firestore, `users/${userId}/trips/${tripId}/activities`);
+    return collectionData(activityRef) as Observable<IActivities[]>
   }
   //Create
-  addActivities(trip: ITrips) {
-    const userId = this.auth.getUserId;
-    // const userId = 'R8McYo1CASSrzqVArC5fwQkSydp2';
-    const tripRef = collection(this.firestore, `users/${userId}/trips/activities`);
-    return addDoc(tripRef, trip);
+  addActivities(activity: IActivities) {
+    const userId = localStorage.getItem('userId' ?? '');
+    const tripId = documentId();
+    const activityRef = collection(this.firestore, `users/${userId}/trips/${tripId}/activities`);
+    return addDoc(activityRef, activity);
   }
   //Update
   updateActivities(activity) {
-    const userId = this.auth.getUserId;
-    const tripId = 'j8DdhI7slMw1ohXctyTF';
-    const activityId = 'j8DdhI7slMw1ohXctyTF';
-    // const userId = 'R8McYo1CASSrzqVArC5fwQkSydp2';
-    const tripRef = doc(this.firestore, `users/${userId}/trips/${tripId}/activities/${activityId}`);
-    return updateDoc(tripRef, activity);
+    const userId = localStorage.getItem('userId' ?? '');
+    const tripId = documentId();
+    const activityId = '';//To remove later
+    const activityRef = doc(this.firestore, `users/${userId}/trips/${tripId}/activities/${activityId}`);
+    return updateDoc(activityRef, activity);
   }
 
   //Delete
   deleteActivities() {
-    const userId = this.auth.getUserId;
-    // const userId = 'R8McYo1CASSrzqVArC5fwQkSydp2';
-    const tripId = 'j8DdhI7slMw1ohXctyTF';
-    const activityId = 'j8DdhI7slMw1ohXctyTF';
-    const tripRef = doc(this.firestore, `users/${userId}/trips/${tripId}/activities/${activityId}`);
-    return deleteDoc(tripRef);
+    const userId = localStorage.getItem('userId' ?? '');
+    const tripId = documentId();
+    const activityId = '';//To remove later
+    const activityRef = doc(this.firestore, `users/${userId}/trips/${tripId}/activities/${activityId}`);
+    return deleteDoc(activityRef);
   }
 
 }

@@ -24,7 +24,6 @@ export class AuthService {
           if (res.user) {
             localStorage.setItem('user', JSON.stringify(res.user));
             localStorage.setItem('userId', res.user.uid);
-            console.log(localStorage.getItem('userId'));
 
 
           }
@@ -43,7 +42,6 @@ export class AuthService {
           if (res.user) {
             localStorage.setItem('user', JSON.stringify(res.user));
             localStorage.setItem('userId', res.user.uid);
-            console.log(localStorage.getItem('userId'));
 
           }
         })
@@ -54,22 +52,10 @@ export class AuthService {
   }
 
   async logout(): Promise<void> {
+    localStorage.removeItem('userId');
     this.auth.signOut;
     this.isloggedIn = false;
 
   }
-
-  getUserId(): string {
-
-    return localStorage.getItem('userId') ?? '';
-  }
-
-
-
-
-
-
-
-
 
 }

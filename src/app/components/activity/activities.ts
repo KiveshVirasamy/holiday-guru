@@ -1,16 +1,6 @@
-
-
-export interface ITrips {
-    userID?: string | unknown;
-    name: string | unknown;
-    description?: string;
-    startDate: string | unknown;
-    endDate: string | unknown;
-    activities?: IActivities[];
-}
-
 export interface IActivities {
     name: string | null;
+    tag: string | null;
     description?: string;
     cost_estimate: string | null;
     startTime: string | null;

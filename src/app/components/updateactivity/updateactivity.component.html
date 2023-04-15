@@ -1,0 +1,49 @@
+<div class="border rounded-md p-4 shadow-sm">
+    <details>
+        <summary class="text-lg font-bold cursor-pointer">Update This Activity</summary>
+        <form class="mt-2 space-y-2">
+            <div class="mb-4">
+                <label for="name" class="block font-medium text-gray-700">Name:</label>
+                <input type="text" id="name" name="name" class="form-input mt-1 block w-full"
+                    [(ngModel)]="updateactivity.name">
+            </div>
+            <div class="mb-4">
+                <label for="description" class="block font-medium text-gray-700">Tag:</label>
+                <input type="text" id="description" name="description" class="form-input mt-1 block w-full"
+                    [(ngModel)]="updateactivity.tag">
+            </div>
+            <div class="mb-4">
+                <label for="description" class="block font-medium text-gray-700">Description:</label>
+                <input type="text" id="description" name="description" class="form-input mt-1 block w-full"
+                    [(ngModel)]="updateactivity.description">
+            </div>
+            <div class="mb-4">
+                <label for="description" class="block font-medium text-gray-700">Cost:</label>
+                <input type="text" id="description" name="description" class="form-input mt-1 block w-full"
+                    [(ngModel)]="updateactivity.cost_estimate">
+            </div>
+            <div class="mb-4">
+                <label for="startDate" class="block font-medium text-gray-700">Start Time:</label>
+                <input type="text" id="startDate" name="startDate" class="form-input mt-1 block w-full"
+                    [(ngModel)]="updateactivity.startTime">
+            </div>
+            <div class="mb-4">
+                <label for="description" class="block font-medium text-gray-700">End Time:</label>
+                <input type="text" id="description" name="description" class="form-input mt-1 block w-full"
+                    [(ngModel)]="updateactivity.endTime">
+            </div>
+            <div class="mb-4">
+                <label for="description" class="block font-medium text-gray-700">Start Location:</label>
+                <input type="text" id="description" name="description" class="form-input mt-1 block w-full"
+                    [(ngModel)]="updateactivity.startLocation">
+            </div>
+            <div class="mb-4">
+                <label for="endDate" class="block font-medium text-gray-700">End Location:</label>
+                <input type="text" id="endDate" name="endDate" class="form-input mt-1 block w-full"
+                    [(ngModel)]="updateactivity.endLocation">
+            </div>
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded" (click)="updateUserActivity()">Update
+                Activity</button>
+        </form>
+    </details>
+</div>
