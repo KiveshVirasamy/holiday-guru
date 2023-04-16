@@ -1,1 +1,11 @@
-<nz-calendar></nz-calendar>
+<ng-container *ngIf="(tripData$ | async) as trips; else loading">
+    <ng-container *ngFor="let item of trips">
+        <li class="text-gray-600">Date Range {{item.startDate | date: 'mediumDate'}} - {{item.endDate | date:
+            'mediumDate'}}
+            <nz-calendar [(ngModel)]="item.startDate && item.endDate">{{item.name}}</nz-calendar>
+        </li>
+    </ng-container>
+</ng-container>
+<ng-template #loading>
+    <p>Loading trips...</p>
+</ng-template>

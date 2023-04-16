@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { CommonModule, registerLocaleData } from '@angular/common';
+import { CommonModule, DatePipe, registerLocaleData } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import en from '@angular/common/locales/en';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
@@ -100,7 +100,8 @@ registerLocaleData(en);
     { provide: NZ_I18N, useValue: en_US },
     { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
     AuthService,
-    FirestoreService
+    FirestoreService,
+    DatePipe
 
 
   ],
