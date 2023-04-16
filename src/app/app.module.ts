@@ -41,6 +41,7 @@ import { UpdatetripComponent } from './components/updatetrip/updatetrip.componen
 import { AuthService } from './shared/services/auth.service';
 import { FirestoreService } from './shared/services/firestore.service';
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 
 registerLocaleData(en);
@@ -86,7 +87,8 @@ registerLocaleData(en);
     NzSpinModule,
     NzListModule,
     NzCollapseModule,
-    StoreModule.forRoot({}, {})
+    StoreModule.forRoot({}, {}),
+    EffectsModule.forRoot([])
 
 
   ],

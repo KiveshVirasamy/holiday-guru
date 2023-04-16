@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { collectionData, Firestore } from '@angular/fire/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { addDoc, collection, deleteDoc, doc, documentId, updateDoc } from 'firebase/firestore';
-import { Observable } from 'rxjs';
+import { from, Observable } from 'rxjs';
 import { IActivities } from 'src/app/models/types/interfaces/activities';
 import { ITrips } from 'src/app/models/types/interfaces/trips';
 
@@ -23,8 +23,7 @@ export class FirestoreService {
   addTrips(trip: ITrips) {
     const userId = localStorage.getItem('userId' ?? '');
     const tripRef = collection(this.firestore, `users/${userId}/trips`);
-    return addDoc(tripRef, trip);
-
+    return from(addDoc(tripRef, trip));
   }
 
   //Read
