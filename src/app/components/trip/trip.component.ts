@@ -25,7 +25,6 @@ export class TripComponent {
 
 
   constructor(private firestore: FirestoreService, private store: Store) {
-    // this.tripData$ = this.firestore.getTrips();
     this.tripData$ = store.pipe(select(selectTrips));
   }
 
