@@ -18,6 +18,8 @@ import { AppComponent } from './app.component';
 import { SignUpComponent } from './components/sign-up/signup.component';
 
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzFormModule } from 'ng-zorro-antd/form';
@@ -31,7 +33,7 @@ import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { ActivityComponent } from './components/activity/activity.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { DeleteActivityComponent } from './components/delete-activity/delete-activity.component';
-import { DeleteTripComponent } from './components/delete/delete-trip.component';
+import { DeleteTripComponent } from './components/delete-trip/delete-trip.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
@@ -40,8 +42,6 @@ import { updateactivityComponent } from './components/updateactivity/updateactiv
 import { UpdatetripComponent } from './components/updatetrip/updatetrip.component';
 import { AuthService } from './shared/services/auth.service';
 import { FirestoreService } from './shared/services/firestore.service';
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
 
 
 registerLocaleData(en);
