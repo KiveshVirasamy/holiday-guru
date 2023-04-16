@@ -18,7 +18,10 @@ import { AppComponent } from './app.component';
 import { SignUpComponent } from './components/sign-up/signup.component';
 
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzCalendarModule } from 'ng-zorro-antd/calendar';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzGridModule } from 'ng-zorro-antd/grid';
@@ -28,10 +31,12 @@ import { NzListModule } from 'ng-zorro-antd/list';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
+import * as fromTripsState from 'src/app/store/reducers/trips.reducer';
 import { ActivityComponent } from './components/activity/activity.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { DeleteActivityComponent } from './components/delete-activity/delete-activity.component';
-import { DeleteTripComponent } from './components/delete/delete-trip.component';
+import { DeleteTripComponent } from './components/delete-trip/delete-trip.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
@@ -40,8 +45,7 @@ import { updateactivityComponent } from './components/updateactivity/updateactiv
 import { UpdatetripComponent } from './components/updatetrip/updatetrip.component';
 import { AuthService } from './shared/services/auth.service';
 import { FirestoreService } from './shared/services/firestore.service';
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
+import { TripsEffects } from './store/effects/trips.effects';
 
 
 registerLocaleData(en);
@@ -62,6 +66,7 @@ registerLocaleData(en);
     updateactivityComponent,
     DeleteTripComponent,
     DeleteActivityComponent,
+    CalendarComponent,
 
 
 
@@ -87,8 +92,11 @@ registerLocaleData(en);
     NzSpinModule,
     NzListModule,
     NzCollapseModule,
+    NzCalendarModule,
     StoreModule.forRoot({}, {}),
-    EffectsModule.forRoot([])
+    EffectsModule.forRoot([]),
+    StoreModule.forFeature(fromTripsState.tripsFeatureKey, fromTripsState.reducer),
+    EffectsModule.forFeature([TripsEffects]),
 
 
   ],
