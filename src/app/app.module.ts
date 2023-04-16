@@ -21,6 +21,7 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzCalendarModule } from 'ng-zorro-antd/calendar';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzGridModule } from 'ng-zorro-antd/grid';
@@ -31,6 +32,7 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { ActivityComponent } from './components/activity/activity.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { DeleteActivityComponent } from './components/delete-activity/delete-activity.component';
 import { DeleteTripComponent } from './components/delete-trip/delete-trip.component';
@@ -42,7 +44,6 @@ import { updateactivityComponent } from './components/updateactivity/updateactiv
 import { UpdatetripComponent } from './components/updatetrip/updatetrip.component';
 import { AuthService } from './shared/services/auth.service';
 import { FirestoreService } from './shared/services/firestore.service';
-import { CalendarComponent } from './components/calendar/calendar.component';
 
 
 registerLocaleData(en);
@@ -89,6 +90,7 @@ registerLocaleData(en);
     NzSpinModule,
     NzListModule,
     NzCollapseModule,
+    NzCalendarModule,
     StoreModule.forRoot({}, {}),
     EffectsModule.forRoot([])
 
