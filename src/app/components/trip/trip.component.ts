@@ -1,7 +1,10 @@
+/* eslint-disable @ngrx/select-style */
 import { Component } from '@angular/core';
+import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { ITrips } from 'src/app/models/types/interfaces/trips';
 import { FirestoreService } from 'src/app/shared/services/firestore.service';
+import { selectTrips } from 'src/app/store/selectors/trips.selector';
 
 @Component({
   selector: 'app-trip',
@@ -21,8 +24,9 @@ export class TripComponent {
 
 
 
-  constructor(private firestore: FirestoreService) {
-    this.tripData$ = this.firestore.getTrips();
+  constructor(private firestore: FirestoreService, private store: Store) {
+    // this.tripData$ = this.firestore.getTrips();
+    this.tripData$ = store.pipe(select(selectTrips));
   }
 
   addUserTrip() {

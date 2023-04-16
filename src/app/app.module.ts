@@ -31,6 +31,7 @@ import { NzListModule } from 'ng-zorro-antd/list';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
+import * as fromTripsState from 'src/app/store/reducers/trips.reducer';
 import { ActivityComponent } from './components/activity/activity.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -44,6 +45,7 @@ import { updateactivityComponent } from './components/updateactivity/updateactiv
 import { UpdatetripComponent } from './components/updatetrip/updatetrip.component';
 import { AuthService } from './shared/services/auth.service';
 import { FirestoreService } from './shared/services/firestore.service';
+import { TripsEffects } from './store/effects/trips.effects';
 
 
 registerLocaleData(en);
@@ -92,7 +94,9 @@ registerLocaleData(en);
     NzCollapseModule,
     NzCalendarModule,
     StoreModule.forRoot({}, {}),
-    EffectsModule.forRoot([])
+    EffectsModule.forRoot([]),
+    StoreModule.forFeature(fromTripsState.tripsFeatureKey, fromTripsState.reducer),
+    EffectsModule.forFeature([TripsEffects]),
 
 
   ],
