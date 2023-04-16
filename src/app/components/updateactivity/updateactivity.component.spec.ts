@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { update } from -activityComponent;
-} from './updateactivity.component';
+import { updateactivityComponent } from './updateactivity.component';
 
 describe('updateactivityComponent', () => {
   let component: updateactivityComponent;
@@ -9,11 +8,11 @@ describe('updateactivityComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [update - activityComponent]
+      declarations: [updateactivityComponent]
     })
       .compileComponents();
 
-    fixture = TestBed.createComponent(update - activityComponent);
+    fixture = TestBed.createComponent(updateactivityComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
