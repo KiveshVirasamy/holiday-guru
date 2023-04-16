@@ -40,6 +40,7 @@ import { updateactivityComponent } from './components/updateactivity/updateactiv
 import { UpdatetripComponent } from './components/updatetrip/updatetrip.component';
 import { AuthService } from './shared/services/auth.service';
 import { FirestoreService } from './shared/services/firestore.service';
+import { StoreModule } from '@ngrx/store';
 
 
 registerLocaleData(en);
@@ -84,7 +85,8 @@ registerLocaleData(en);
     NzMenuModule,
     NzSpinModule,
     NzListModule,
-    NzCollapseModule
+    NzCollapseModule,
+    StoreModule.forRoot({}, {})
 
 
   ],
