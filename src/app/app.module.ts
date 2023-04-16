@@ -42,6 +42,7 @@ import { updateactivityComponent } from './components/updateactivity/updateactiv
 import { UpdatetripComponent } from './components/updatetrip/updatetrip.component';
 import { AuthService } from './shared/services/auth.service';
 import { FirestoreService } from './shared/services/firestore.service';
+import { CalendarComponent } from './components/calendar/calendar.component';
 
 
 registerLocaleData(en);
@@ -62,6 +63,7 @@ registerLocaleData(en);
     updateactivityComponent,
     DeleteTripComponent,
     DeleteActivityComponent,
+    CalendarComponent,
 
 
 
