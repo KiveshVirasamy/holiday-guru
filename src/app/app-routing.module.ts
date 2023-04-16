@@ -4,13 +4,15 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignUpComponent } from './components/sign-up/signup.component';
+import { UpdatetripComponent } from './components/updatetrip/updatetrip.component';
 import { AuthGuard } from './shared/services/auth.guard';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignUpComponent },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] }
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard/:tripId', component: UpdatetripComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

@@ -22,7 +22,8 @@
                         <input nz-input type="password" #passwordSignUp class="w-full" />
                     </nz-form-item>
                     <button nz-button nzType="primary" class="w-full"
-                        (click)="onSignup(emailSignUp.value, passwordSignUp.value)">Sign Up</button>
+                        (click)="onSignup(emailSignUp.value, passwordSignUp.value)" routerLink="/dashboard">Sign
+                        Up</button>
                 </form>
                 <div></div>
             </div>

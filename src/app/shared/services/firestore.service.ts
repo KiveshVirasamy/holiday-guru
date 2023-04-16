@@ -1,55 +1,85 @@
-import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from '@angular/fire/compat/firestore';
+import { inject, Injectable } from '@angular/core';
+import { collectionData, Firestore } from '@angular/fire/firestore';
+import { ActivatedRoute } from '@angular/router';
+import { addDoc, collection, deleteDoc, doc, documentId, updateDoc } from 'firebase/firestore';
 import { Observable } from 'rxjs';
-import { map, take } from 'rxjs/operators';
-import { User } from 'src/app/models/user';
+import { IActivities } from 'src/app/models/types/interfaces/activities';
+import { ITrips } from 'src/app/models/types/interfaces/trips';
+
 
 
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class FirestoreService {
-  private usersCollection: AngularFirestoreCollection<User>;
-  private users: Observable<User[]>;
+  private firestore = inject(Firestore);
 
-  constructor(private firestore: AngularFirestore) {
-    this.usersCollection = this.firestore.collection<User>('users');
-    this.users = this.usersCollection.snapshotChanges().pipe(
-      map(actions => actions.map(a => {
-        const data = a.payload.doc.data() as User;
-        const id = a.payload.doc.id;
-        return { id, ...data };
-      }))
-    );
+  constructor(private route: ActivatedRoute) { }
+
+
+  //Create
+  addTrips(trip: ITrips) {
+    const userId = localStorage.getItem('userId' ?? '');
+    const tripRef = collection(this.firestore, `users/${userId}/trips`);
+    return addDoc(tripRef, trip);
+
   }
 
-  getUsers(): Observable<User[]> {
-    return this.users;
-  }
+  //Read
+  getTrips() {
+    const userId = localStorage.getItem('userId' ?? '');
+    const tripRef = collection(this.firestore, `users/${userId}/trips`);
+    return collectionData(tripRef) as Observable<ITrips[]>
 
-  getUser(id: string): Observable<User | undefined> {
-    return this.usersCollection.doc<User>(id).valueChanges().pipe(
-      take(1),
-      map(user => {
-        if (user) {
-          user.id = id;
-        }
-        return user;
-      })
-    );
   }
 
 
-  addUser(user: User): Promise<DocumentReference> {
-    return this.usersCollection.add(user);
+  //Update
+  upDateTrip(trip, tripId: string) {
+    const userId = localStorage.getItem('userId' ?? '');
+    const tripRef = doc(this.firestore, `users/${userId}/trips/${tripId}`);
+    return updateDoc(tripRef, trip);
   }
 
-  updateUser(user: User): Promise<void> {
-    return this.usersCollection.doc(user.id).update({ email: user.email, password: user.password });
+  //Delete
+  deleteTrip() {
+    const userId = localStorage.getItem('userId' ?? '');
+    const tripId = '';// To remove later
+    const activityRef = doc(this.firestore, `users/${userId}/trips/${tripId}`);
+    return deleteDoc(activityRef);
   }
 
-  deleteUser(id: string): Promise<void> {
-    return this.usersCollection.doc(id).delete();
+  getActivities() {
+    const userId = localStorage.getItem('userId' ?? '');
+    const tripId = documentId();
+    const activityRef = collection(this.firestore, `users/${userId}/trips/${tripId}/activities`);
+    return collectionData(activityRef) as Observable<IActivities[]>
   }
+  //Create
+  addActivities(activity: IActivities) {
+    const userId = localStorage.getItem('userId' ?? '');
+    const tripId = documentId();
+    const activityRef = collection(this.firestore, `users/${userId}/trips/${tripId}/activities`);
+    return addDoc(activityRef, activity);
+  }
+  //Update
+  updateActivities(activity) {
+    const userId = localStorage.getItem('userId' ?? '');
+    const tripId = documentId();
+    const activityId = '';//To remove later
+    const activityRef = doc(this.firestore, `users/${userId}/trips/${tripId}/activities/${activityId}`);
+    return updateDoc(activityRef, activity);
+  }
+
+  //Delete
+  deleteActivities() {
+    const userId = localStorage.getItem('userId' ?? '');
+    const tripId = documentId();
+    const activityId = '';//To remove later
+    const activityRef = doc(this.firestore, `users/${userId}/trips/${tripId}/activities/${activityId}`);
+    return deleteDoc(activityRef);
+  }
+
 }

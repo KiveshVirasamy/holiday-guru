@@ -1,0 +1,55 @@
+<ng-container *ngIf="(tripData$ | async) as trips; else loading">
+    <ul class="space-y-4">
+        <li *ngFor="let item of trips">
+            <div class="border rounded-md p-4 shadow-sm">
+                <details>
+                    <summary class="text-lg font-bold cursor-pointer">{{item.name}}</summary>
+                    <ul class="ml-4 space-y-2">
+                        <li class="text-gray-600">Description: {{item.description}}</li>
+                        <li class="text-gray-600">Start Date: {{item.startDate}}</li>
+                        <li class="text-gray-600">End Date: {{item.endDate}}</li>
+                        <li class="text-gray-600">Activities: <app-activity></app-activity></li>
+                        <li class="text-gray-600">Update this trip: <app-updatetrip></app-updatetrip></li>
+                        <li><app-delete-trip></app-delete-trip></li>
+                    </ul>
+                </details>
+            </div>
+        </li>
+        <li>
+            <div class="border rounded-md p-4 shadow-sm">
+                <details>
+                    <summary class="text-lg font-bold cursor-pointer">Add a new trip</summary>
+                    <form class="mt-2 space-y-2">
+                        <div class="mb-4">
+                            <label for="name" class="block font-medium text-gray-700">Name:</label>
+                            <input type="text" id="name" name="name" class="form-input mt-1 block w-full"
+                                [(ngModel)]="newTrip.name">
+                        </div>
+                        <div class="mb-4">
+                            <label for="description" class="block font-medium text-gray-700">Description:</label>
+                            <input type="text" id="description" name="description" class="form-input mt-1 block w-full"
+                                [(ngModel)]="newTrip.description">
+                        </div>
+                        <div class="mb-4">
+                            <label for="startDate" class="block font-medium text-gray-700">Start Date:</label>
+                            <input type="text" id="startDate" name="startDate" class="form-input mt-1 block w-full"
+                                [(ngModel)]="newTrip.startDate">
+                        </div>
+                        <div class="mb-4">
+                            <label for="endDate" class="block font-medium text-gray-700">End Date:</label>
+                            <input type="text" id="endDate" name="endDate" class="form-input mt-1 block w-full"
+                                [(ngModel)]="newTrip.endDate">
+                        </div>
+                        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded"
+                            (click)="addUserTrip()">Add
+                            Trip</button>
+                    </form>
+                </details>
+            </div>
+        </li>
+
+    </ul>
+</ng-container>
+<ng-template #loading>
+    <p>Loading trips...</p>
+</ng-template>
