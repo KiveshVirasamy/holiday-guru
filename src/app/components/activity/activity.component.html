@@ -5,14 +5,13 @@
                 <details>
                     <summary class="text-lg font-bold cursor-pointer">{{item.name}}</summary>
                     <ul class="ml-4 space-y-2">
-                        <li class="text-gray-600">Tag: {{item.tag}}</li>
-                        <li class="text-gray-600">Description: {{item.description}}</li>
-                        <li class="text-gray-600">Cost: {{item.cost_estimate}}</li>
-                        <li class="text-gray-600">Start Time: {{item.startTime}}</li>
-                        <li class="text-gray-600">End Time: {{item.endTime}}</li>
-                        <li class="text-gray-600">Start Location: {{item.startLocation}}</li>
-                        <li class="text-gray-600">End Location: {{item.endLocation}}</li>
-                        <li><app-updateactivity></app-updateactivity></li>
+                        <li class="text-gray-600">Tag: {{item.tag ?? 'no Tag'}}</li>
+                        <li class="text-gray-600">Description: {{item.description ?? 'no description' }}</li>
+                        <li class="text-gray-600">Cost: {{item.cost_estimate ?? 'no Cost' }}</li>
+                        <li class="text-gray-600">Start Time: {{item.startTime ?? 'no Time' }}</li>
+                        <li class="text-gray-600">End Time: {{item.endTime ?? 'no Time' }}</li>
+                        <li class="text-gray-600">Start Location: {{item.startLocation ?? 'no Location' }}</li>
+                        <li class="text-gray-600">End Location: {{item.endLocation ?? 'no Location' }}</li>
                         <button nz-button nzType="default" nzShape="round" routerLink="/dashboard/editActivity">Edit
                             Activity</button>
                         <li><app-delete-activity></app-delete-activity></li>

@@ -24,11 +24,22 @@ export class TripComponent {
 
 
 
+
+
   constructor(private firestore: FirestoreService, private store: Store) {
     this.tripData$ = store.pipe(select(selectTrips));
   }
 
   addUserTrip() {
     this.firestore.addTrips(this.newTrip);
+  }
+
+  clearForm() {
+    this.newTrip = {
+      name: '',
+      description: '',
+      startDate: '',
+      endDate: ''
+    };
   }
 }
