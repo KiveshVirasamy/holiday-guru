@@ -42,8 +42,8 @@
                 <input type="text" id="endDate" name="endDate" class="form-input mt-1 block w-full"
                     [(ngModel)]="updateactivity.endLocation">
             </div>
-            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded" (click)="updateUserActivity()">Update
-                Activity</button>
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded" (click)="updateUserActivity()"
+                routerLink="/dashboard">Save Changes</button>
         </form>
     </details>
 </div>
