@@ -52,6 +52,7 @@ import { TripsEffects } from './store/effects/trips.effects';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
 
+
 registerLocaleData(en);
 
 
@@ -110,6 +111,7 @@ registerLocaleData(en);
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }),
+
 
 
   ],
