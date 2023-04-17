@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { FirestoreService } from 'src/app/shared/services/firestore.service';
 
 @Component({
@@ -8,19 +7,20 @@ import { FirestoreService } from 'src/app/shared/services/firestore.service';
   styleUrls: ['./updatetrip.component.scss']
 })
 export class UpdatetripComponent {
-  tripId = this.route.snapshot.paramMap.get('tripId') ?? '';
+  tripId = '';
+
   updateTrip = {
     name: '',
     description: '',
     startDate: '',
     endDate: ''
   }
-  constructor(private firestore: FirestoreService, private route: ActivatedRoute) {
+  constructor(private firestore: FirestoreService) {
 
   }
 
   updateUserTrip() {
-    this.firestore.upDateTrip(this.updateTrip, this.tripId);
+    this.firestore.upDateTrip(this.updateTrip);
   }
 
 

@@ -1,4 +1,5 @@
 export interface IActivities {
+    id?: string;
     name: string | null;
     tag: string | null;
     description?: string;
