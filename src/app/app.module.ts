@@ -1,4 +1,4 @@
-import { NgModule, isDevMode } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { CommonModule, registerLocaleData } from '@angular/common';
@@ -49,7 +49,6 @@ import { UpdatetripComponent } from './components/updatetrip/updatetrip.componen
 import { AuthService } from './shared/services/auth.service';
 import { FirestoreService } from './shared/services/firestore.service';
 import { TripsEffects } from './store/effects/trips.effects';
-import { ServiceWorkerModule } from '@angular/service-worker';
 
 
 
@@ -105,12 +104,6 @@ registerLocaleData(en);
     EffectsModule.forRoot([]),
     StoreModule.forFeature(fromTripsState.tripsFeatureKey, fromTripsState.reducer),
     EffectsModule.forFeature([TripsEffects]),
-    ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: !isDevMode(),
-      // Register the ServiceWorker as soon as the application is stable
-      // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
-    }),
 
 
 
