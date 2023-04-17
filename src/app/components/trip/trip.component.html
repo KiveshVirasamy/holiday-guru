@@ -3,9 +3,9 @@
         <div *ngFor="let trip of trips">
             <nz-card nzTitle={{trip.name}} class="bg-white border border-gray-200 shadow-md">
                 <ul class="space-y-2">
-                    <li><strong>Description:</strong> {{ trip.description }}</li>
-                    <li><strong>Start Date:</strong> {{ trip.startDate }}</li>
-                    <li><strong>End Date:</strong> {{ trip.endDate }}</li>
+                    <li><strong>Description:</strong> {{ trip.description ?? 'no description' }}</li>
+                    <li><strong>Start Date:</strong> {{ trip.startDate ?? 'no Date'}}</li>
+                    <li><strong>End Date:</strong> {{ trip.endDate ?? 'no Date'}}</li>
                     <li><strong>Activities:</strong> <app-activity></app-activity></li>
                     <li class="flex justify-end space-x-2">
                         <button nz-button nzType="default" nzShape="round" routerLink="/dashboard/editTrip">Edit
