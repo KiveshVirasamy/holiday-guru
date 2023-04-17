@@ -24,15 +24,23 @@ export class AuthService {
           if (res.user) {
             localStorage.setItem('user', JSON.stringify(res.user));
             localStorage.setItem('userId', res.user.uid);
-
-
           }
         })
+
+        .catch(error => {
+          throw new Error(`Login failed: ${error.message}`);
+        });
     } catch (error) {
-      console.log('Error logging in:', error);
-      this.isloggedIn = true;
+      if (error instanceof Error) {
+        window.alert(error.message);
+      } else {
+        window.alert('An unknown error occurred.');
+      }
+      this.isloggedIn = false;
     }
   }
+
+
 
   async signup(email: string, password: string): Promise<void> {
     try {
@@ -42,14 +50,21 @@ export class AuthService {
           if (res.user) {
             localStorage.setItem('user', JSON.stringify(res.user));
             localStorage.setItem('userId', res.user.uid);
-
           }
         })
+        .catch(error => {
+          throw new Error(`Sign Up failed: ${error.message}`);
+        });
     } catch (error) {
-      console.log('Error logging in:', error);
+      if (error instanceof Error) {
+        window.alert(error.message);
+      } else {
+        window.alert('An unknown error occurred.');
+      }
       this.isloggedIn = false;
     }
   }
+
 
   async logout(): Promise<void> {
     localStorage.removeItem('userId');

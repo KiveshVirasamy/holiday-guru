@@ -9,7 +9,8 @@
                         <li class="text-gray-600">Start Date: {{item.startDate}}</li>
                         <li class="text-gray-600">End Date: {{item.endDate}}</li>
                         <li class="text-gray-600">Activities: <app-activity></app-activity></li>
-                        <li class="text-gray-600">Update this trip: <app-updatetrip></app-updatetrip></li>
+                        <button nz-button nzType="default" nzShape="round" routerLink="/dashboard/editTrip">Edit
+                            trip</button>
                         <li><app-delete-trip></app-delete-trip></li>
                     </ul>
                 </details>
