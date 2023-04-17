@@ -22,6 +22,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCalendarModule } from 'ng-zorro-antd/calendar';
+import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzGridModule } from 'ng-zorro-antd/grid';
@@ -97,6 +98,7 @@ registerLocaleData(en);
     NzCollapseModule,
     NzCalendarModule,
     NzResultModule,
+    NzCardModule,
     StoreModule.forRoot({}, {}),
     EffectsModule.forRoot([]),
     StoreModule.forFeature(fromTripsState.tripsFeatureKey, fromTripsState.reducer),

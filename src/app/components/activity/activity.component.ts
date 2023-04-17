@@ -23,16 +23,6 @@ export class ActivityComponent {
     endLocation: ''
   }
 
-  updateactivity = {
-    name: '',
-    tag: '',
-    description: '',
-    cost_estimate: '',
-    startTime: '',
-    endTime: '',
-    startLocation: '',
-    endLocation: ''
-  }
 
   constructor(private firestore: FirestoreService) {
     this.activityData$ = this.firestore.getActivities();
@@ -52,9 +42,5 @@ export class ActivityComponent {
     };
   }
 
-  updateUserActivity() {
-
-    this.firestore.updateActivities(this.updateactivity);
-  }
 
 }

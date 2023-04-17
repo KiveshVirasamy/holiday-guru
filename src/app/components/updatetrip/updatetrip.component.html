@@ -1,6 +1,10 @@
+<nz-layout>
+    <nz-header aria-label="Site navigation" class="flex justify-between items-center px-4 py-2 md:px-8">
+        <a routerLink="/dashboard" nz-typography class="text-2xl font-bold">Holiday Guru</a>
+    </nz-header>
+</nz-layout>
 <div class="border rounded-md p-4 shadow-sm">
-    <details>
-        <summary class="text-lg font-bold cursor-pointer">Update Trip</summary>
+    <nz-card nzTitle="Edit This Trip" nzCollapsible="true" [nzBordered]="false">
         <form class="mt-2 space-y-2">
             <div class="mb-4">
                 <label for="name" class="block font-medium text-gray-700">Name:</label>
@@ -25,5 +29,5 @@
             <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded" (click)="updateUserTrip()"
                 routerLink="/dashboard">Save Changes</button>
         </form>
-    </details>
+    </nz-card>
 </div>
