@@ -35,7 +35,6 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import * as fromTripsState from 'src/app/store/reducers/trips.reducer';
 import { ActivityComponent } from './components/activity/activity.component';
-import { CalendarComponent } from './components/calendar/calendar.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { DeleteActivityComponent } from './components/delete-activity/delete-activity.component';
 import { DeleteTripComponent } from './components/delete-trip/delete-trip.component';
@@ -69,7 +68,6 @@ registerLocaleData(en);
     updateactivityComponent,
     DeleteTripComponent,
     DeleteActivityComponent,
-    CalendarComponent,
     ErrorpageComponent,
 
 
