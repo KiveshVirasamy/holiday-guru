@@ -1,9 +1,10 @@
 import { inject, Injectable } from '@angular/core';
 import { collectionData, Firestore } from '@angular/fire/firestore';
-import { addDoc, collection, deleteDoc, doc, setDoc } from 'firebase/firestore';
-import { from, Observable, tap } from 'rxjs';
+import { collection, deleteDoc, doc, setDoc, updateDoc } from 'firebase/firestore';
+import { from, Observable } from 'rxjs';
 import { IActivities } from 'src/app/models/types/interfaces/activities';
 import { ITrips } from 'src/app/models/types/interfaces/trips';
+import { v4 as uuidv4 } from 'uuid';
 
 
 
@@ -21,13 +22,17 @@ export class FirestoreService {
   //Create
   addTrips(trip: ITrips) {
     const userId = localStorage.getItem('userId' ?? '');
-    const tripRef = collection(this.firestore, `users/${userId}/trips`);
-    return from(addDoc(tripRef, trip)).pipe(
-      tap((docRef: { id: string; }) => {
-        localStorage.setItem('tripId', docRef.id);
-      })
-    );
+    const tripId = trip.id ?? '';
+    localStorage.setItem('tripId', trip.id ?? '');
+    const tripRef = doc(this.firestore, `users/${userId}/trips/${tripId}`);
+    return from(setDoc(tripRef, trip));
   }
+
+
+  generateRandomString() {
+    return uuidv4();
+  }
+
 
 
   //Read
@@ -42,7 +47,7 @@ export class FirestoreService {
     const userId = localStorage.getItem('userId' ?? '');
     const tripId = localStorage.getItem('tripId' ?? '');
     const tripRef = doc(this.firestore, `users/${userId}/trips/${tripId}`);
-    return setDoc(tripRef, trip)
+    return updateDoc(tripRef, trip)
       .catch(() => {
         window.alert('An error occurred while updating the trip. Please try again later.');
       });
@@ -66,16 +71,15 @@ export class FirestoreService {
     const activityRef = collection(this.firestore, `users/${userId}/trips/${tripId}/activities`);
     return collectionData(activityRef) as Observable<IActivities[]>
   }
+
   //Create
   addActivities(activity: IActivities) {
     const userId = localStorage.getItem('userId' ?? '');
     const tripId = localStorage.getItem('tripId' ?? '');
-    const activityRef = collection(this.firestore, `users/${userId}/trips/${tripId}/activities`);
-    return from(addDoc(activityRef, activity)).pipe(
-      tap((docRef: { id: string; }) => {
-        localStorage.setItem('activityId', docRef.id);
-      })
-    );
+    const activityId = activity.id ?? '';
+    localStorage.setItem('activityId', activityId);
+    const activityRef = doc(this.firestore, `users/${userId}/trips/${tripId}/activities/${activityId}`);
+    return from(setDoc(activityRef, activity));
   }
   //Update
   updateActivities(activity) {

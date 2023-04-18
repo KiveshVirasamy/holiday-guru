@@ -15,7 +15,10 @@ export class TripComponent {
 
   tripData$: Observable<ITrips[]> | undefined;
 
+
+
   newTrip: ITrips = {
+    id: '',
     name: '',
     description: '',
     startDate: '',
@@ -31,6 +34,8 @@ export class TripComponent {
   }
 
   addUserTrip() {
+    const tripId = this.firestore.generateRandomString();
+    this.newTrip.id = tripId;
     this.firestore.addTrips(this.newTrip);
   }
 
