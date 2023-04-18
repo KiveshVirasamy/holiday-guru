@@ -17,13 +17,7 @@ export class TripComponent {
 
 
 
-  newTrip: ITrips = {
-    id: '',
-    name: '',
-    description: '',
-    startDate: '',
-    endDate: ''
-  }
+
 
 
 
@@ -33,18 +27,5 @@ export class TripComponent {
     this.tripData$ = store.pipe(select(selectTrips));
   }
 
-  addUserTrip() {
-    const tripId = this.firestore.generateRandomString();
-    this.newTrip.id = tripId;
-    this.firestore.addTrips(this.newTrip);
-  }
 
-  clearForm() {
-    this.newTrip = {
-      name: '',
-      description: '',
-      startDate: '',
-      endDate: ''
-    };
-  }
 }

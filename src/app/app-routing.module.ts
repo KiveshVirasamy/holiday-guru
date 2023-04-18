@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AddActivitiesComponent } from './components/add-activities/add-activities.component';
+import { AddTripsComponent } from './components/add-trips/add-trips.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ErrorpageComponent } from './components/errorpage/errorpage.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
@@ -14,7 +16,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignUpComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard/addTrip', component: AddTripsComponent, canActivate: [AuthGuard] },
   { path: 'dashboard/editTrip', component: UpdatetripComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard/addActivity', component: AddActivitiesComponent, canActivate: [AuthGuard] },
   { path: 'dashboard/editActivity', component: updateactivityComponent, canActivate: [AuthGuard] },
   { path: '**', component: ErrorpageComponent }
 ];

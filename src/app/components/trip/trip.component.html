@@ -8,6 +8,8 @@
                     <li><strong>End Date:</strong> {{ trip.endDate ?? 'no Date'}}</li>
                     <li><strong>Activities:</strong> <app-activity></app-activity></li>
                     <li class="flex justify-end space-x-2">
+                        <button nz-button nzType="default" nzShape="round" routerLink="/dashboard/addActivity">Add New
+                            Activity</button>
                         <button nz-button nzType="default" nzShape="round" routerLink="/dashboard/editTrip">Edit
                             Trip</button>
                         <app-delete-trip></app-delete-trip>
@@ -15,37 +17,15 @@
                 </ul>
             </nz-card>
         </div>
-        <div>
-            <div class="mb-4 p-4"> Add a New Trip</div>
-            <nz-card class="bg-white border border-gray-200 shadow-md">
-                <form class="space-y-2" (ngSubmit)="addUserTrip(); clearForm()" title="Add a new trip">
-                    <div class="mb-4">
-                        <label for="name" class="block font-medium text-gray-700">Name:</label>
-                        <input type="text" id="name" name="name" class="form-input mt-1 block w-full"
-                            [(ngModel)]="newTrip.name">
-                    </div>
-                    <div class="mb-4">
-                        <label for="description" class="block font-medium text-gray-700">Description:</label>
-                        <input type="text" id="description" name="description" class="form-input mt-1 block w-full"
-                            [(ngModel)]="newTrip.description">
-                    </div>
-                    <div class="mb-4">
-                        <label for="startDate" class="block font-medium text-gray-700">Start Date:</label>
-                        <input type="text" id="startDate" name="startDate" class="form-input mt-1 block w-full"
-                            [(ngModel)]="newTrip.startDate">
-                    </div>
-                    <div class="mb-4">
-                        <label for="endDate" class="block font-medium text-gray-700">End Date:</label>
-                        <input type="text" id="endDate" name="endDate" class="form-input mt-1 block w-full"
-                            [(ngModel)]="newTrip.endDate">
-                    </div>
-                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Add Trip</button>
-                </form>
-            </nz-card>
+        <div class="flex justify-center pb-4">
+            <div>
+                <button nz-button nzType="default" nzShape="round" routerLink="/dashboard/addTrip">Add New Trip</button>
+            </div>
         </div>
+
     </div>
 </ng-container>
 
 <ng-template #loading>
-    <p>Loading trips...</p>
+    <nz-spin nzSize="large"></nz-spin>
 </ng-template>
