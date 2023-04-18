@@ -13,6 +13,7 @@ export class ActivityComponent {
   activityData$: Observable<IActivities[]> | undefined;
 
   newActivity: IActivities = {
+    id: '',
     name: '',
     tag: '',
     description: '',
@@ -29,6 +30,8 @@ export class ActivityComponent {
   }
 
   addUserActivity() {
+    const activityId = this.firestore.generateRandomString();
+    this.newActivity.id = activityId;
     this.firestore.addActivities(this.newActivity);
     this.newActivity = {
       name: '',
