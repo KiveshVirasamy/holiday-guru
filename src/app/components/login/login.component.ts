@@ -17,9 +17,9 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     if (localStorage.getItem('user') !== null)
-      this.isSignedIn = true;
-    else
       this.isSignedIn = false;
+    else
+      this.isSignedIn = true;
   }
 
   async onLogin(email: string, password: string) {

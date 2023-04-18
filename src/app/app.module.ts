@@ -48,6 +48,8 @@ import { UpdatetripComponent } from './components/updatetrip/updatetrip.componen
 import { AuthService } from './shared/services/auth.service';
 import { FirestoreService } from './shared/services/firestore.service';
 import { TripsEffects } from './store/effects/trips.effects';
+import { AddTripsComponent } from './components/add-trips/add-trips.component';
+import { AddActivitiesComponent } from './components/add-activities/add-activities.component';
 
 
 registerLocaleData(en);
@@ -69,6 +71,8 @@ registerLocaleData(en);
     DeleteTripComponent,
     DeleteActivityComponent,
     ErrorpageComponent,
+    AddTripsComponent,
+    AddActivitiesComponent,
 
 
 

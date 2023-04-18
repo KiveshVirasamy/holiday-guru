@@ -1,6 +1,9 @@
-<nz-layout class="bg-[url('src/assets/background.jpg')]">
+<nz-layout class="bg-[url('src/assets/background.jpg')]" aria-label="Main Layout">
     <nz-header aria-label="Site navigation" class="flex justify-between items-center px-4 py-2 md:px-8">
-        <a routerLink="/" nz-typography class="text-2xl font-bold">Holiday Guru</a>
+        <a routerLink="/" nz-typography class="text-2xl font-bold">
+            <span class="text-slate-200" aria-label="Holiday">Holiday</span>
+            <span class="text-blue-500" aria-label="Guru">Guru</span>
+        </a>
         <div class="flex justify-center items-center">
             <button aria-label="Login" nz-button nzType="primary" nzShape="round" routerLink="/login"
                 class="mr-2">Login</button>
@@ -8,20 +11,21 @@
                 Up</button>
         </div>
     </nz-header>
-    <nz-content>
-        <div class="flex justify-center items-center h-screen px-4">
+    <nz-content aria-label="Main Content">
+        <div class="flex justify-center items-center h-screen px-4" aria-label="Login Form">
             <div class="w-full max-w-xs bg-white p-6 rounded-md shadow-lg">
-                <h2 class="text-xl font-bold mb-4">Login</h2>
+                <h2 class="flex justify-center text-xl font-bold mb-4" aria-label="Login Heading">Login</h2>
                 <form nz-form>
                     <nz-form-item>
-                        <nz-form-label htmlFor="email">Email</nz-form-label>
-                        <input nz-input type="text" id="email" #emailLogin class="w-full" />
+                        <nz-form-label aria-label="Email Label">Email</nz-form-label>
+                        <input nz-input type="text" id="email" #emailLogin class="w-full" aria-label="Email Input" />
                     </nz-form-item>
                     <nz-form-item>
-                        <nz-form-label htmlFor="password">Password</nz-form-label>
-                        <input nz-input type="password" id="password" #passwordLogin class="w-full" />
+                        <nz-form-label aria-label="Password Label">Password</nz-form-label>
+                        <input nz-input type="password" id="password" #passwordLogin class="w-full"
+                            aria-label="Password Input" />
                     </nz-form-item>
-                    <button aria-label="Login" nz-button nzType="primary" class="w-full mt-4"
+                    <button aria-label="Login Button" nz-button nzType="primary" class="w-full mt-4"
                         (click)="onLogin(emailLogin.value, passwordLogin.value)" routerLink="/dashboard">Login</button>
                 </form>
             </div>

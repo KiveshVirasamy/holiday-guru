@@ -12,38 +12,14 @@ export class ActivityComponent {
 
   activityData$: Observable<IActivities[]> | undefined;
 
-  newActivity: IActivities = {
-    id: '',
-    name: '',
-    tag: '',
-    description: '',
-    cost_estimate: '',
-    startTime: '',
-    endTime: '',
-    startLocation: '',
-    endLocation: ''
-  }
+
 
 
   constructor(private firestore: FirestoreService) {
     this.activityData$ = this.firestore.getActivities();
   }
 
-  addUserActivity() {
-    const activityId = this.firestore.generateRandomString();
-    this.newActivity.id = activityId;
-    this.firestore.addActivities(this.newActivity);
-    this.newActivity = {
-      name: '',
-      tag: '',
-      description: '',
-      cost_estimate: '',
-      startTime: '',
-      endTime: '',
-      startLocation: '',
-      endLocation: ''
-    };
-  }
+
 
 
 }

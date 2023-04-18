@@ -1,6 +1,9 @@
-<nz-layout class="bg-[url('src/assets/background.jpg')]">
+<nz-layout class="bg-[url('src/assets/background.jpg')] filter brightness-77">
     <nz-header aria-label="Site navigation" class="flex justify-between items-center px-4 py-2 md:px-8">
-        <a routerLink="/" nz-typography class="text-2xl font-bold">Holiday Guru</a>
+        <a routerLink="/" nz-typography class="text-2xl font-bold">
+            <span class="text-slate-200">Holiday</span>
+            <span class="text-blue-500">Guru</span>
+        </a>
         <div class="flex justify-center items-center">
             <button aria-label="Login" nz-button nzType="primary" nzShape="round" routerLink="/login"
                 class="mr-2">Login</button>
@@ -10,15 +13,16 @@
     </nz-header>
     <nz-content>
         <nz-row class="h-screen flex items-center justify-center">
-            <nz-col class="flex items-center justify-center">
-                <div class="text-center">
-                    <h1 class="text-3xl md:text-5xl mb-8 text-white">Plan your dream vacation with ease</h1>
-                    <p class="text-lg md:text-xl text-white px-4 md:px-8" style="line-height: 1.5;">Holiday Planner is
-                        the perfect tool for
-                        anyone who wants to plan their dream vacation with ease. With our user-friendly interface and
-                        powerful planning tools, you can quickly and easily create the perfect itinerary for your next
-                        trip. Whether you're planning a romantic getaway or a family vacation, Holiday Planner has
-                        everything you need to make your trip a success.</p>
+            <nz-col class="flex items-center justify-center mx-4 md:mx-0">
+                <div class="bg-white opacity-90 rounded-lg p-8 max-w-3xl md:mx-auto">
+                    <h1 class="text-3xl md:text-5xl mb-8 text-gray-800 font-bold">Plan your dream <span
+                            class="text-blue-500">Vacation</span> with ease
+                    </h1>
+                    <p class="flex justify-start text-lg md:text-xl text-gray-800 md:px-8" style="line-height: 1.5;">
+                        Planning your dream vacation has never been easier thanks to Holiday Guru. Whether it's a
+                        romantic getaway or a family excursion, Holiday Guru provides all the
+                        essential elements for a successful and stress-free vacation.
+                    </p>
                 </div>
             </nz-col>
         </nz-row>
