@@ -15,29 +15,39 @@
         <h1 class="text-lg font-bold ml-4">Add a New Trip</h1>
     </div>
     <div class="bg-white border border-gray-200 shadow-md p-4">
-        <form class="space-y-4" (ngSubmit)="addUserTrip(); clearForm()" title="Add a new trip">
+        <form [formGroup]="addTripForm" class="space-y-4" (ngSubmit)="addUserTrip()" title="Add a new trip">
+            <div *ngIf="formError" class="text-red-600 mb-2">{{ formError }}</div>
             <div class="mb-4">
                 <label for="name" class="block font-medium text-gray-700 mb-2">Name:</label>
-                <input type="text" id="name" name="name" class="form-input w-full border border-gray-400 w-full h-12"
-                    [(ngModel)]="newTrip.name">
+                <input formControlName="name" type="text" id="name"
+                    class="form-input w-full border border-gray-400 h-12" />
+                <p *ngIf="addTripForm.get('name')?.invalid && addTripForm.get('name')?.touched"
+                    class="text-sm text-red-500">Name is required and must be at least 3 characters.</p>
             </div>
             <div class="mb-4">
                 <label for="description" class="block font-medium text-gray-700 mb-2">Description:</label>
-                <input type="text" id="description" name="description"
-                    class="form-input w-full border border-gray-400 w-full h-12" [(ngModel)]="newTrip.description">
+                <input formControlName="description" type="text" id="description"
+                    class="form-input w-full border border-gray-400 h-12" />
+                <p *ngIf="addTripForm.get('description')?.invalid && addTripForm.get('description')?.touched"
+                    class="text-sm text-red-500">Description is required.</p>
             </div>
             <div class="mb-4">
                 <label for="startDate" class="block font-medium text-gray-700 mb-2">Start Date:</label>
-                <input type="text" id="startDate" name="startDate"
-                    class="form-input w-full border border-gray-400 w-full h-12" [(ngModel)]="newTrip.startDate">
+                <input formControlName="startDate" type="date" id="startDate"
+                    class="form-input w-full border border-gray-400 h-12" />
+                <p *ngIf="addTripForm.get('startDate')?.invalid && addTripForm.get('startDate')?.touched"
+                    class="text-sm text-red-500">Start Date is required.</p>
             </div>
             <div class="mb-4">
                 <label for="endDate" class="block font-medium text-gray-700 mb-2">End Date:</label>
-                <input type="text" id="endDate" name="endDate"
-                    class="form-input w-full border border-gray-400 w-full h-12" [(ngModel)]="newTrip.endDate">
+                <input formControlName="endDate" type="date" id="endDate"
+                    class="form-input w-full border border-gray-400 h-12" />
+                <p *ngIf="addTripForm.get('endDate')?.invalid && addTripForm.get('endDate')?.touched"
+                    class="text-sm text-red-500">End Date is required.</p>
             </div>
             <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-                routerLink="/dashboard">Add Trip</button>
+                [disabled]="addTripForm.invalid">Add Trip</button>
+            <button type="button" class="bg-gray-300 text-black px-4 py-2 rounded" (click)="clearForm()">Clear</button>
         </form>
     </div>
 </div>

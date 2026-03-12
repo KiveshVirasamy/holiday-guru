@@ -8,7 +8,7 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getDatabase, provideDatabase } from '@angular/fire/database';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { en_US, NZ_I18N } from 'ng-zorro-antd/i18n';
 import { environment } from '../environments/environment';
@@ -35,6 +35,8 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import * as fromTripsState from 'src/app/store/reducers/trips.reducer';
 import { ActivityComponent } from './components/activity/activity.component';
+import { AddActivitiesComponent } from './components/add-activities/add-activities.component';
+import { AddTripsComponent } from './components/add-trips/add-trips.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { DeleteActivityComponent } from './components/delete-activity/delete-activity.component';
 import { DeleteTripComponent } from './components/delete-trip/delete-trip.component';
@@ -47,14 +49,11 @@ import { updateactivityComponent } from './components/updateactivity/updateactiv
 import { UpdatetripComponent } from './components/updatetrip/updatetrip.component';
 import { AuthService } from './shared/services/auth.service';
 import { FirestoreService } from './shared/services/firestore.service';
+import { MockAuthService } from './shared/services/mock-auth.service';
+import { MockFirestoreService } from './shared/services/mock-firestore.service';
 import { TripsEffects } from './store/effects/trips.effects';
-import { AddTripsComponent } from './components/add-trips/add-trips.component';
-import { AddActivitiesComponent } from './components/add-activities/add-activities.component';
-
 
 registerLocaleData(en);
-
-
 
 @NgModule({
   declarations: [
@@ -73,9 +72,6 @@ registerLocaleData(en);
     ErrorpageComponent,
     AddTripsComponent,
     AddActivitiesComponent,
-
-
-
   ],
   imports: [
     BrowserModule,
@@ -85,6 +81,7 @@ registerLocaleData(en);
     provideDatabase(() => getDatabase()),
     provideFirestore(() => getFirestore()),
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     CommonModule,
@@ -103,19 +100,26 @@ registerLocaleData(en);
     NzCardModule,
     StoreModule.forRoot({}, {}),
     EffectsModule.forRoot([]),
-    StoreModule.forFeature(fromTripsState.tripsFeatureKey, fromTripsState.reducer),
+    StoreModule.forFeature(
+      fromTripsState.tripsFeatureKey,
+      fromTripsState.reducer,
+    ),
     EffectsModule.forFeature([TripsEffects]),
-
-
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },
     { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
-    AuthService,
-    FirestoreService
-
-
+    {
+      provide: AuthService,
+      useClass: environment.useMockServices ? MockAuthService : AuthService,
+    },
+    {
+      provide: FirestoreService,
+      useClass: environment.useMockServices
+        ? MockFirestoreService
+        : FirestoreService,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -17,26 +17,27 @@
         <form class="mt-2 space-y-2">
             <div class="mb-4">
                 <label for="name" class="block font-medium text-gray-700">Name:</label>
-                <input type="text" id="name" name="name" class="form-input w-full border border-gray-400 w-full h-12"
+                <input type="text" id="name" name="name" class="form-input w-full border border-gray-400 h-12"
                     [(ngModel)]="updateTrip.name">
             </div>
             <div class="mb-4">
                 <label for="description" class="block font-medium text-gray-700">Description:</label>
                 <input type="text" id="description" name="description"
-                    class="form-input w-full border border-gray-400 w-full h-12" [(ngModel)]="updateTrip.description">
+                    class="form-input w-full border border-gray-400 h-12" [(ngModel)]="updateTrip.description">
             </div>
             <div class="mb-4">
                 <label for="startDate" class="block font-medium text-gray-700">Start Date:</label>
                 <input type="text" id="startDate" name="startDate"
-                    class="form-input w-full border border-gray-400 w-full h-12" [(ngModel)]="updateTrip.startDate">
+                    class="form-input w-full border border-gray-400 h-12" [(ngModel)]="updateTrip.startDate">
             </div>
             <div class="mb-4">
                 <label for="endDate" class="block font-medium text-gray-700">End Date:</label>
                 <input type="text" id="endDate" name="endDate"
-                    class="form-input w-full border border-gray-400 w-full h-12" [(ngModel)]="updateTrip.endDate">
+                    class="form-input w-full border border-gray-400 h-12" [(ngModel)]="updateTrip.endDate">
             </div>
-            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded" (click)="updateUserTrip()"
-                routerLink="/dashboard">Save Changes</button>
+            <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded" (click)="updateUserTrip()">
+                Save Changes
+            </button>
         </form>
     </nz-card>
 </div>

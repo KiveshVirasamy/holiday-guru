@@ -1,0 +1,26 @@
+/* Global container styling for clean modern layout */
+:host {
+  display: block;
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  color: #0f172a;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+}

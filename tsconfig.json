@@ -19,9 +19,9 @@
     "target": "ES2022",
     "module": "ES2022",
     "useDefineForClassFields": false,
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "lib": ["ES2022", "dom"],
-    "strictPropertyInitialization": false
+    "strictPropertyInitialization": true
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

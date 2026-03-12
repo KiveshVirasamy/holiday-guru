@@ -1,13 +1,13 @@
 export interface Trip {
-    id?: string;
-    name: string | unknown;
-    description?: string;
-    startDate: string | unknown;
-    endDate: string | unknown;
+  id?: string;
+  name: string;
+  description?: string;
+  startDate: string;
+  endDate: string;
 }
 
 export interface TripsState {
-    trips: Trip[];
-    loading: boolean;
-    error: string;
+  trips: Trip[];
+  loading: boolean;
+  error: string | null;
 }

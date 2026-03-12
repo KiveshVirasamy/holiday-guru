@@ -16,19 +16,31 @@
             <div class="w-full max-w-xs bg-white p-6 rounded-md shadow-lg">
                 <h2 class="flex justify-center text-xl font-bold mb-4" aria-label="Login Heading">Sign
                     Up</h2>
-                <form nz-form>
+                <form nz-form [formGroup]="signupForm" (ngSubmit)="onSignup()">
+                    <div *ngIf="formError" class="text-red-600 mb-2">{{ formError }}</div>
                     <nz-form-item>
                         <nz-form-label aria-label="Email Label">Email</nz-form-label>
-                        <input nz-input type="text" id="email" #emailLogin class="w-full" aria-label="Email Input" />
+                        <input nz-input type="email" formControlName="email" class="w-full" aria-label="Email Input" />
+                        <div class="text-red-600 text-xs mt-1"
+                            *ngIf="signupForm.get('email')?.hasError('required') && signupForm.get('email')?.touched">
+                            Email is required.</div>
+                        <div class="text-red-600 text-xs mt-1"
+                            *ngIf="signupForm.get('email')?.hasError('email') && signupForm.get('email')?.touched">Enter
+                            a valid email.</div>
                     </nz-form-item>
                     <nz-form-item>
                         <nz-form-label aria-label="Password Label">Password</nz-form-label>
-                        <input nz-input type="password" id="password" #passwordLogin class="w-full"
+                        <input nz-input type="password" formControlName="password" class="w-full"
                             aria-label="Password Input" />
+                        <div class="text-red-600 text-xs mt-1"
+                            *ngIf="signupForm.get('password')?.hasError('required') && signupForm.get('password')?.touched">
+                            Password is required.</div>
+                        <div class="text-red-600 text-xs mt-1"
+                            *ngIf="signupForm.get('password')?.hasError('minlength') && signupForm.get('password')?.touched">
+                            Password must be at least 6 characters.</div>
                     </nz-form-item>
-                    <button aria-label="Login Button" nz-button nzType="primary" class="w-full mt-4"
-                        (click)="onSignup(emailLogin.value, passwordLogin.value)" routerLink="/dashboard">Sign
-                        Up</button>
+                    <button aria-label="Sign Up Button" nz-button nzType="primary" class="w-full mt-4" type="submit"
+                        [disabled]="signupForm.invalid">Sign Up</button>
                 </form>
             </div>
         </div>
